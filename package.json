@@ -2,7 +2,8 @@
   "name": "todomvc",
   "description": "TodoMVC implemented with React-Redux & hooks.",
   "version": "0.1.0",
-  "main": "src/index.ts",
+  "license": "MIT",
+  "main": "src/index.tsx",
   "scripts": {
     "start": "tsdx watch",
     "test": "tsdx test --env=jsdom",
