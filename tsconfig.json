@@ -1,32 +1,13 @@
 {
+  "extends": "./tsconfig.permissive.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
-    "baseUrl": "./",
-    "declaration": false,
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "jsx": "react",
-    "lib": ["dom", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "noEmit": true, // Don't output any javascript
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "paths": {
-      "*": ["src/*", "node_modules/*"]
-    },
-    "rootDir": "./",
-    "sourceMap": true,
-    "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "target": "esnext"
+    "noUnusedParameters": true
   },
-  "include": ["src", "types"]
+  "files": []
 }
