@@ -1,17 +1,15 @@
 {
   "name": "todomvc",
+  "description": "TodoMVC implemented with React-Redux & hooks.",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "umd:main": "dist/todomvc.umd.production.js",
-  "module": "dist/todomvc.es.production.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "src/index.ts",
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --env=jsdom"
+    "test": "tsdx test --env=jsdom",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "dev": "start-test 3000 cy:open",
+    "test:e2e": "start-test 3000 cy:run"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -23,19 +21,31 @@
   },
   "prettier": {
     "printWidth": 80,
-    "semi": true,
+    "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "dependencies": {
+    "classnames": "2.2.6",
+    "hypermerge": "0.3.2",
+    "immutable": "3.8.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-redux": "7.1.0-alpha.4",
+    "redux": "4.0.1",
+    "redux-persist": "^5.10.0",
+    "uuid": "^3.3.2"
+  },
   "devDependencies": {
+    "@testing-library/cypress": "^4.0.2",
     "@types/jest": "^24.0.13",
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "cypress": "^3.2.0",
     "husky": "^2.3.0",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "start-server-and-test": "^1.9.0",
     "tsdx": "^0.6.1",
     "tslib": "^1.9.3",
     "typescript": "^3.5.1"
