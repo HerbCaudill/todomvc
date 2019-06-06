@@ -15,12 +15,12 @@ export const Todo = ({ id, completed, content }) => {
   const [editContent, setEditContent] = useState(content)
 
   // input.current will contain a reference to the editing input
-  const input = useRef()
+  const input = useRef<HTMLInputElement>() as React.RefObject<HTMLInputElement>
 
   // side effect: need to select all content in the input when going into editing mode
   // this will only fire when `editing` changes
   const selectAllOnEdit = () => {
-    if (editing) input.current.select()
+    if (editing && input.current) input.current.select()
   }
   useEffect(selectAllOnEdit, [editing])
 
@@ -49,11 +49,11 @@ export const Todo = ({ id, completed, content }) => {
     }
   }
 
-  const enterEditMode = e => setEditing(true)
-  const leaveEditMode = e => setEditing(false)
+  const enterEditMode = () => setEditing(true)
+  const leaveEditMode = () => setEditing(false)
 
   const updateContent = e => setEditContent(e.target.value)
-  const restoreContent = e => setEditContent(content)
+  const restoreContent = () => setEditContent(content)
 
   return (
     <li className={cn({ completed, editing })}>

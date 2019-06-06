@@ -15,7 +15,7 @@ export function ClearCompletedButton() {
   )
   if (completedTodos.length === 0) return null
 
-  const destroyCompletedTodos = e =>
+  const destroyCompletedTodos = () =>
     completedTodos.forEach(({ id }) => dispatch(destroyTodo(id)))
 
   return (
