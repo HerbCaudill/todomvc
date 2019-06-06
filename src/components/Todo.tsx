@@ -10,10 +10,11 @@ import { useDispatch } from 'react-redux'
 
 import { toggleTodo, destroyTodo, editTodo } from '../redux/actions'
 
+import { Todo as TodoType } from '../types'
 const ENTER_KEY = 13
 const ESCAPE_KEY = 27
 
-export const Todo = ({ id, completed, content }: Todo) => {
+export const Todo = ({ id, completed, content }: TodoType) => {
   const dispatch = useDispatch()
 
   // component state

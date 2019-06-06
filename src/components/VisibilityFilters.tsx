@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setFilter } from '../redux/actions'
+import { VisibilityFilter, VisibilityFilterKey } from '../types'
 
 export const VisibilityFilters = () => {
   const activeFilter = useSelector((state: any) => state.visibilityFilter)

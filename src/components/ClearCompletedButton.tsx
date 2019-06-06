@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { destroyTodo } from '../redux/actions'
 import { getFilteredTodos } from '../redux/selectors'
+import { VisibilityFilter } from '../types'
 
 export function ClearCompletedButton() {
   const dispatch = useDispatch()

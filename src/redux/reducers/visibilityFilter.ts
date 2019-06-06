@@ -1,3 +1,4 @@
+import { VisibilityFilter } from '../../types'
 import { SET_FILTER } from '../actions'
 import { Reducer } from 'redux'
 

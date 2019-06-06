@@ -1,3 +1,5 @@
+import { VisibilityFilter, State } from '../types'
+
 export const getVisibilityFilter = (state: State) => state.visibilityFilter
 
 export const getTodo = (id: string) => (state: State) => ({

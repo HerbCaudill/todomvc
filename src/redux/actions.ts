@@ -1,4 +1,6 @@
 import uuid from 'uuid'
+import { VisibilityFilter } from '../types'
+
 export const ADD_TODO = 'ADD_TODO'
 export const addTodo = (content: string) => ({
   type: ADD_TODO,
