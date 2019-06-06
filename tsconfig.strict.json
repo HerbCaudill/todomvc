@@ -1,13 +1,11 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.permissive.json",
   "compilerOptions": {
-    "noEmit": true, // Don't output any javascript
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
-  },
-  "files": ["src/components/ClearCompletedButton.tsx"]
+  }
 }

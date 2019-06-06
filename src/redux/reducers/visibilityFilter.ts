@@ -1,8 +1,8 @@
 import { SET_FILTER } from '../actions'
-import { VISIBILITY_FILTERS } from '../../constants'
+import { Reducer } from 'redux'
 
-export const visibilityFilter = (
-  state = VISIBILITY_FILTERS.ALL,
+export const visibilityFilter: Reducer = (
+  state = VisibilityFilter.ALL,
   { type, payload }
 ) => {
   switch (type) {

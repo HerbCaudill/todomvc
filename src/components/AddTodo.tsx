@@ -1,14 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, FormEventHandler } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../redux/actions'
 
-export const AddTodo = props => {
+export const AddTodo = () => {
   // input.current will contain a reference to the new todo input field
   const input = useRef<HTMLInputElement>() as React.RefObject<HTMLInputElement>
 
   const dispatch = useDispatch()
 
-  const save = e => {
+  const save: FormEventHandler<HTMLFormElement> = e => {
     // don't post back
     e.preventDefault()
     if (input && input.current) {

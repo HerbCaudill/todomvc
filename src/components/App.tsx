@@ -5,13 +5,10 @@ import { useSelector } from 'react-redux'
 import { getFilteredTodos } from '../redux/selectors'
 import { AddTodo, TodoList, VisibilityFilters, ClearCompletedButton } from '.'
 import { pluralize } from '../lib/pluralize'
-import { VISIBILITY_FILTERS } from '../constants'
 
 export default function App() {
-  const activeTodos = useSelector(
-    getFilteredTodos(VISIBILITY_FILTERS.INCOMPLETE)
-  )
-  const allTodos = useSelector(getFilteredTodos(VISIBILITY_FILTERS.ALL))
+  const activeTodos = useSelector(getFilteredTodos(VisibilityFilter.INCOMPLETE))
+  const allTodos = useSelector(getFilteredTodos(VisibilityFilter.ALL))
   const activeCount = activeTodos.length
   const hidden = allTodos.length === 0
 

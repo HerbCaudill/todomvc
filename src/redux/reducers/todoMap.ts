@@ -1,6 +1,7 @@
 import { ADD_TODO, TOGGLE_TODO, DESTROY_TODO, EDIT_TODO } from '../actions'
+import { Reducer } from 'redux'
 
-export const todoMap = (state = {}, { type, payload }) => {
+export const todoMap: Reducer = (state = {}, { type, payload }) => {
   switch (type) {
     case ADD_TODO: {
       const { id, content } = payload

@@ -1,6 +1,7 @@
 import { ADD_TODO, DESTROY_TODO } from '../actions'
+import { Reducer } from 'redux'
 
-export const todoList = (state = [], { type, payload }) => {
+export const todoList: Reducer = (state: Todo[] = [], { type, payload }) => {
   switch (type) {
     case ADD_TODO:
       return [...state, payload.id]

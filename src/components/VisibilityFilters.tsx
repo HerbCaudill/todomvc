@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react'
 import cn from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setFilter } from '../redux/actions'
-import { VISIBILITY_FILTERS } from '../constants'
 
 export const VisibilityFilters = () => {
   const activeFilter = useSelector((state: any) => state.visibilityFilter)
@@ -11,12 +10,12 @@ export const VisibilityFilters = () => {
 
   return (
     <ul className="filters">
-      {Object.keys(VISIBILITY_FILTERS).map(filterKey => {
-        const currentFilter = VISIBILITY_FILTERS[filterKey]
+      {Object.keys(VisibilityFilter).map(filterKey => {
+        const currentFilter = VisibilityFilter[filterKey as VisibilityFilterKey]
 
         const selected = currentFilter === activeFilter
 
-        const onClick = e => {
+        const onClick: MouseEventHandler = e => {
           e.preventDefault()
           dispatch(setFilter(currentFilter))
         }

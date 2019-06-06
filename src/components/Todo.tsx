@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  KeyboardEventHandler,
+  FormEventHandler,
+} from 'react'
 import cn from 'classnames'
 import { useDispatch } from 'react-redux'
 
@@ -7,7 +13,7 @@ import { toggleTodo, destroyTodo, editTodo } from '../redux/actions'
 const ENTER_KEY = 13
 const ESCAPE_KEY = 27
 
-export const Todo = ({ id, completed, content }) => {
+export const Todo = ({ id, completed, content }: Todo) => {
   const dispatch = useDispatch()
 
   // component state
@@ -25,8 +31,10 @@ export const Todo = ({ id, completed, content }) => {
   useEffect(selectAllOnEdit, [editing])
 
   // we save when the user has either tabbed or clicked away, or hit Enter
-  const save = e => {
-    const saveContent = e.target.value.trim()
+  const save: FormEventHandler<HTMLInputElement> = (
+    e: React.FormEvent<HTMLInputElement>
+  ) => {
+    const saveContent = (e.target as HTMLInputElement).value.trim()
     if (saveContent.length > 0) {
       // todo was changed - keep the edited content
       dispatch(editTodo(id, saveContent))
@@ -38,7 +46,7 @@ export const Todo = ({ id, completed, content }) => {
   }
 
   // listen for special keys
-  const onKeyDown = e => {
+  const onKeyDown: KeyboardEventHandler<HTMLInputElement> = e => {
     if (e.keyCode === ESCAPE_KEY) {
       // ESC: abort editing
       restoreContent()
@@ -52,7 +60,8 @@ export const Todo = ({ id, completed, content }) => {
   const enterEditMode = () => setEditing(true)
   const leaveEditMode = () => setEditing(false)
 
-  const updateContent = e => setEditContent(e.target.value)
+  const updateContent: FormEventHandler<HTMLInputElement> = e =>
+    setEditContent((e.target as HTMLInputElement).value)
   const restoreContent = () => setEditContent(content)
 
   return (

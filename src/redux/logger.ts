@@ -1,4 +1,6 @@
-export const logger = store => next => action => {
+import { Middleware } from 'redux'
+
+export const logger: Middleware = store => next => action => {
   console.group(action.type)
   console.info('dispatching', JSON.stringify(action))
   console.log('prev state', JSON.stringify(store.getState()))
