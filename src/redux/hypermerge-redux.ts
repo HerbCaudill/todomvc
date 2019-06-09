@@ -1,35 +1,34 @@
 import { Middleware } from 'redux'
 import { Repo } from 'hypermerge'
-import { State } from 'src/types'
+// import { State } from 'src/types'
+import { diff } from 'deep-diff'
 
-export const hypermergeRedux = (
-  repo: Repo
+export const hypermergeRedux = <T>(
+  repo: Repo<T>,
+  url: string
 ): Middleware => store => next => action => {
   const prev = store.getState()
   const result = next(action)
   const curr = store.getState()
 
-  watch(repo, prev, curr)
+  watch(repo, url, prev, curr)
 
   return result
 }
 
-const watch = (repo: Repo, prev: State, curr: State) => {
-  console.log(repo, prev, curr)
-  // const prev = prevState.getIn(path)
-  // const curr = currState.getIn(path)
-
-  // if (is(curr, prev)) return
-
-  // curr.forEach((rec, k) => {
-  //   const pRec = prev.get(k)
-
-  //   if (!rec || !rec.doc) return
-  //   if (!pRec || !pRec.doc) return
-  //   if (equals(rec, pRec)) return
-  //   if (rec.doc === repo.find(repo.getId(rec.doc))) return
-
-  //   console.log(rec, k)
-  //   repo.update(rec.doc)
+const watch = <T>(repo: Repo<T>, url: string, prev: any, curr: any) => {
+  console.log(repo, url, prev, curr)
+  const differences = diff(prev, curr)
+  for (const d in differences) {
+    console.log(d)
+  }
+  // for (let k: string in curr) {
+  //   const currRec = curr[k]
+  //   const prevRec = prev[k]
+  //   if (!currRec || !currRec.doc) return
+  //   if (!prevRec || !prevRec.doc) return
+  //   if (currRec == prevRec) return
+  //   console.log(currRec, k)
+  //   repo.update(currRec.doc)
   // })
 }
