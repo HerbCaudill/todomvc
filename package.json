@@ -12,11 +12,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "prettier": {
     "printWidth": 80,
     "semi": false,
@@ -48,7 +43,6 @@
     "@types/uuid": "^3.4.4",
     "cypress": "^3.2.0",
     "hoist-non-react-statics": "^3.3.0",
-    "husky": "^2.3.0",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
     "start-server-and-test": "^1.9.0",
