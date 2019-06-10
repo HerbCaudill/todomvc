@@ -1,0 +1,23 @@
+body {
+  padding: 0;
+}
+.cards {
+  padding: 4em 2em;
+}
+.header + h4 {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.ui.label {
+  margin: 0 2px 2px 0;
+}
+.bar {
+  color: silver;
+  padding: 0 5px;
+}
+.card .button-hide {
+  display: none;
+}
+.card:hover .button-hide {
+  display: block;
+}
