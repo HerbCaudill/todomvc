@@ -1,1 +1,1 @@
-declare module '@philholden/redux-swarmlog'
+declare module 'redux-swarmlog'

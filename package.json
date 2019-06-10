@@ -19,9 +19,12 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "@philholden/redux-swarmlog": "^0.2.0",
+    "chloride": "^2.2.14",
     "classnames": "2.2.6",
+    "crypto": "^1.0.1",
     "immutable": "^4.0.0-rc.12",
+    "level-js": "^4.0.1",
+    "levelup": "^4.0.2",
     "npm-run-all": "^4.1.5",
     "random-access-web": "^2.0.1",
     "react": "16.8.6",
@@ -31,6 +34,7 @@
     "redux": "4.0.1",
     "redux-persist": "^5.10.0",
     "ssb-keys": "^7.1.6",
+    "swarmlog": "^1.4.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
