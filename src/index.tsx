@@ -1,18 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+// import { addReduxSwarmLog } from '@philholden/redux-swarmlog'
+// import keys from './keys.json'
+
+// addReduxSwarmLog({ name: 'todos', keys })
+
 import { Provider } from 'react-redux'
-import { store, persistor } from './redux/store'
+import { store } from './redux/store'
 
 import App from './components/App'
-import { PersistGate } from 'redux-persist/integration/react'
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
+    <App />
   </Provider>,
   rootElement
 )
