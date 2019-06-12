@@ -1,13 +1,13 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, useContext } from 'react'
 import cx from 'classnames'
-import { useSelector, useDispatch } from 'react-redux'
-
 import { actions } from '../redux/actions'
 import { VisibilityFilter, VisibilityFilterKey } from '../types'
+import { StoreContext } from 'src/redux/context'
 
 export const VisibilityFilters = () => {
-  const activeFilter = useSelector((state: any) => state.visibilityFilter)
-  const dispatch = useDispatch()
+  const { state, dispatch } = useContext(StoreContext)
+
+  const activeFilter = state.visibilityFilter
 
   return (
     <ul className="filters">
@@ -18,7 +18,7 @@ export const VisibilityFilters = () => {
 
         const onClick: MouseEventHandler = e => {
           e.preventDefault()
-          dispatch(actions.setFilter(currentFilter))
+          dispatch!(actions.setFilter(currentFilter))
         }
 
         return (
