@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import cx from 'classnames'
 import React, {
   FormEventHandler,
   KeyboardEventHandler,
@@ -66,7 +66,7 @@ export const Todo = ({ id, completed, content }: TodoType) => {
   const restoreContent = () => setEditContent(content)
 
   return (
-    <li className={cn({ completed, editing })}>
+    <li className={cx({ completed, editing })}>
       <div className="view">
         <input
           className="toggle"

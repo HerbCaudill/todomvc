@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react'
-import cn from 'classnames'
+import cx from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { actions } from '../redux/actions'
@@ -26,7 +26,7 @@ export const VisibilityFilters = () => {
             {/* linter doesn't like not having an href */}
             {/* eslint-disable-next-line */}
             <a
-              className={cn({ selected })}
+              className={cx({ selected })}
               onClick={onClick}
               style={{ cursor: 'pointer' }}
             >

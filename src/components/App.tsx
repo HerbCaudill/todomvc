@@ -1,4 +1,4 @@
-import cn from 'classnames'
+import cx from 'classnames'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
@@ -19,10 +19,10 @@ export default function App() {
         <h1>todos</h1>
         <AddTodo />
       </header>
-      <section className={cn({ main: true, hidden })}>
+      <section className={cx({ main: true, hidden })}>
         <TodoList />
       </section>
-      <footer className={cn({ footer: true, hidden })}>
+      <footer className={cx({ footer: true, hidden })}>
         <span className="todo-count">
           <strong>{activeCount}</strong> {pluralize(activeCount, 'item')} left
         </span>
