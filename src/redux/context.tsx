@@ -1,12 +1,8 @@
-import React, {
-  createContext,
-  useReducer,
-  Dispatch,
-  ReactChildren,
-} from 'react'
-import { State, VisibilityFilter } from 'src/types'
-import { reducers } from './reducers'
+import React, { createContext, Dispatch, ReactNode, useReducer } from 'react'
 import { AnyAction } from 'redux'
+import { State, VisibilityFilter } from 'src/types'
+import { actions } from './actions'
+import { reducers } from './reducers'
 
 const initialState: State = {
   visibilityFilter: VisibilityFilter.ALL,
@@ -16,20 +12,15 @@ const initialState: State = {
 
 export interface ContextInterface {
   state: State
-  dispatch?: Dispatch<AnyAction>
+  dispatch: Dispatch<AnyAction>
+  actions: typeof actions
 }
 
-export const StoreContext = createContext<ContextInterface>({
-  state: initialState,
-})
-
-export const StoreProvider = ({ children }: any) => {
-  // Get state and dispatch from Reacts new API useReducer.
+export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducers, initialState)
-
+  const context = { state, dispatch, actions }
+  const StoreContext = createContext(context)
   return (
-    <StoreContext.Provider value={{ state, dispatch }}>
-      {children}
-    </StoreContext.Provider>
+    <StoreContext.Provider value={context}>{children}</StoreContext.Provider>
   )
 }
