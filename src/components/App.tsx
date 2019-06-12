@@ -1,15 +1,17 @@
 import cx from 'classnames'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useContext } from 'react'
 
 import { getFilteredTodos } from '../redux/selectors'
 import { AddTodo, TodoList, VisibilityFilters, ClearCompletedButton } from '.'
 import { pluralize } from '../lib/pluralize'
 import { VisibilityFilter } from '../types'
+import { StoreContext } from 'src/redux/context'
 
 export default function App() {
-  const activeTodos = useSelector(getFilteredTodos(VisibilityFilter.INCOMPLETE))
-  const allTodos = useSelector(getFilteredTodos(VisibilityFilter.ALL))
+  const { state } = useContext(StoreContext)
+
+  const activeTodos = getFilteredTodos(VisibilityFilter.INCOMPLETE)(state)
+  const allTodos = getFilteredTodos(VisibilityFilter.ALL)(state)
   const activeCount = activeTodos.length
   const hidden = allTodos.length === 0
 

@@ -1,18 +1,16 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import React, { useContext } from 'react'
 
 import { actions } from '../redux/actions'
 import { getFilteredTodos } from '../redux/selectors'
 import { VisibilityFilter } from '../types'
+import { StoreContext } from 'src/redux/context'
 
 export function ClearCompletedButton() {
-  const dispatch = useDispatch()
+  const { state, dispatch } = useContext(StoreContext)
 
   // don't render this button if there are no completed todos
-  const completedTodos = useSelector(
-    getFilteredTodos(VisibilityFilter.COMPLETED)
-  )
+  const completedTodos = getFilteredTodos(VisibilityFilter.COMPLETED)(state)
+
   if (completedTodos.length === 0) return null
 
   const destroyCompletedTodos = () =>

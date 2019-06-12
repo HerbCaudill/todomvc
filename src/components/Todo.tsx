@@ -2,11 +2,12 @@ import cx from 'classnames'
 import React, {
   FormEventHandler,
   KeyboardEventHandler,
+  useContext,
   useEffect,
   useRef,
   useState,
 } from 'react'
-import { useDispatch } from 'react-redux'
+import { StoreContext } from 'src/redux/context'
 import { actions } from '../redux/actions'
 import { Todo as TodoType } from '../types'
 
@@ -16,7 +17,7 @@ const ENTER_KEY = 13
 const ESCAPE_KEY = 27
 
 export const Todo = ({ id, completed, content }: TodoType) => {
-  const dispatch = useDispatch()
+  const { dispatch } = useContext(StoreContext)
 
   // component state
   const [editing, setEditing] = useState(false)

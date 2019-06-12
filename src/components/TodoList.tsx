@@ -1,11 +1,12 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-
+import React, { useContext } from 'react'
+import { StoreContext } from 'src/redux/context'
 import { Todo } from '.'
 import { getVisibleTodos } from '../redux/selectors'
 
 export const TodoList = () => {
-  const todos = useSelector(getVisibleTodos)
+  const { state } = useContext(StoreContext)
+
+  const todos = getVisibleTodos(state)
 
   return (
     <ul className="todo-list">

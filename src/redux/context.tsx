@@ -16,11 +16,19 @@ const initialState: State = {
   todoMap: {},
 }
 
-const [state, dispatch] = useReducer(reducers, initialState)
-const context = { state, dispatch, actions }
+const DISPATCH_PLACEHOLDER = () => {}
 
-export const StoreContext = createContext(context)
+export const StoreContext = createContext<ContextInterface>({
+  state: initialState,
+  dispatch: DISPATCH_PLACEHOLDER,
+  actions,
+})
 
-export const StoreProvider = ({ children }: { children: ReactNode }) => (
-  <StoreContext.Provider value={context}>{children}</StoreContext.Provider>
-)
+export const StoreProvider = ({ children }: { children: ReactNode }) => {
+  const [state, dispatch] = useReducer(reducers, initialState)
+  return (
+    <StoreContext.Provider value={{ state, dispatch, actions }}>
+      {children}
+    </StoreContext.Provider>
+  )
+}
