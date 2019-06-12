@@ -1,5 +1,5 @@
 import { VisibilityFilter } from '../../types'
-import { SET_FILTER } from '../actions'
+import { ActionType } from '../actions'
 import { Reducer } from 'redux'
 
 export const visibilityFilter: Reducer = (
@@ -7,7 +7,7 @@ export const visibilityFilter: Reducer = (
   { type, payload }
 ) => {
   switch (type) {
-    case SET_FILTER:
+    case ActionType.SET_FILTER:
       return payload.filter
     default:
       return state

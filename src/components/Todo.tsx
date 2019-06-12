@@ -7,8 +7,10 @@ import React, {
   useState,
 } from 'react'
 import { useDispatch } from 'react-redux'
-import { destroyTodo, editTodo, toggleTodo } from '../redux/actions'
+import { actions } from '../redux/actions'
 import { Todo as TodoType } from '../types'
+
+const { editTodo, destroyTodo, toggleTodo } = actions
 
 const ENTER_KEY = 13
 const ESCAPE_KEY = 27
@@ -25,10 +27,9 @@ export const Todo = ({ id, completed, content }: TodoType) => {
 
   // side effect: need to select all content in the input when going into editing mode
   // this will only fire when `editing` changes
-  const selectAllOnEdit = () => {
+  useEffect(() => {
     if (editing && input.current) input.current.select()
-  }
-  useEffect(selectAllOnEdit, [editing])
+  }, [editing])
 
   // we save when the user has either tabbed or clicked away, or hit Enter
   const save: FormEventHandler<HTMLInputElement> = (

@@ -1,9 +1,9 @@
-import { ADD_TODO, TOGGLE_TODO, DESTROY_TODO, EDIT_TODO } from '../actions'
+import { ActionType } from '../actions'
 import { Reducer } from 'redux'
 
 export const todoMap: Reducer = (state = {}, { type, payload }) => {
   switch (type) {
-    case ADD_TODO: {
+    case ActionType.ADD_TODO: {
       const { id, content } = payload
       return {
         ...state,
@@ -13,7 +13,8 @@ export const todoMap: Reducer = (state = {}, { type, payload }) => {
         },
       }
     }
-    case TOGGLE_TODO: {
+
+    case ActionType.TOGGLE_TODO: {
       const { id } = payload
       const currentTodo = state[id]
       return {
@@ -24,7 +25,8 @@ export const todoMap: Reducer = (state = {}, { type, payload }) => {
         },
       }
     }
-    case EDIT_TODO: {
+
+    case ActionType.EDIT_TODO: {
       const { id, content } = payload
       const currentTodo = state[id]
       return {
@@ -32,11 +34,13 @@ export const todoMap: Reducer = (state = {}, { type, payload }) => {
         [id]: { ...currentTodo, content: content },
       }
     }
-    case DESTROY_TODO: {
+
+    case ActionType.DESTROY_TODO: {
       const { id } = payload
       const { [id]: _, ...rest } = state
       return rest
     }
+
     default:
       return state
   }
