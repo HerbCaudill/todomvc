@@ -3,6 +3,7 @@ import { AnyAction } from 'redux'
 import { State, VisibilityFilter } from 'src/types'
 import { actions } from './actions'
 import { reducer } from './reducer'
+import Automerge from 'automerge'
 
 export interface ContextInterface {
   state: State
@@ -10,16 +11,27 @@ export interface ContextInterface {
   actions: typeof actions
 }
 
-const DEFAULT_STATE: State = {
-  visibilityFilter: VisibilityFilter.ALL,
-  todoList: [],
-  todoMap: {},
+const STORAGE_KEY = 'todos'
+
+const DEFAULT_STATE: State = Automerge.change(Automerge.init<State>(), d => {
+  d.visibilityFilter = VisibilityFilter.ALL
+  d.todoList = []
+  d.todoMap = {}
+})
+
+const getInitialState = () => {
+  const rehydrate = (historyJson: string): State => {
+    const history = JSON.parse(historyJson)
+    return Automerge.applyChanges(Automerge.init(), history)
+  }
+
+  const history = localStorage.getItem(STORAGE_KEY)
+  return history ? rehydrate(history) : DEFAULT_STATE
 }
 
-const persistedState = localStorage.getItem('todos')
-const initialState = persistedState ? JSON.parse(persistedState) : DEFAULT_STATE
-
 const DISPATCH_PLACEHOLDER = () => {}
+
+const initialState = getInitialState()
 
 export const StoreContext = createContext<ContextInterface>({
   state: initialState,
@@ -31,7 +43,9 @@ type Reducer = typeof reducer
 
 const persist = (r: Reducer): Reducer => (prevState, action) => {
   const nextState = r(prevState, action)
-  localStorage.setItem('todos', JSON.stringify(nextState))
+  const changes = Automerge.getChanges(prevState, nextState)
+  const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...history, ...changes]))
   return nextState
 }
 
