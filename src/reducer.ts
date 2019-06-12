@@ -1,50 +1,50 @@
-import Automerge from 'automerge'
-import { Reducer } from 'react'
-import { State, Action } from 'src/types'
+import { State } from 'src/types'
 import { ActionType } from './actions'
+import { ProxyReducer } from './automerge/types'
+import { automergeReducer } from './automerge/automergeReducer'
 
-export const reducer: Reducer<State, Action> = (state, { type, payload }) => {
-  const msg = `${type}: ${JSON.stringify(payload)}`
-  console.log(msg)
+const {
+  SET_FILTER,
+  ADD_TODO,
+  DESTROY_TODO,
+  TOGGLE_TODO,
+  EDIT_TODO,
+} = ActionType
 
+const proxyReducer: ProxyReducer<State> = ({ type, payload }) => {
   switch (type) {
-    case ActionType.SET_FILTER:
-      return Automerge.change(state, msg, d => {
-        d.visibilityFilter = payload.filter
-      })
+    case SET_FILTER:
+      return s => (s.visibilityFilter = payload.filter)
 
-    case ActionType.ADD_TODO: {
+    case ADD_TODO: {
       const { id, content } = payload
-      return Automerge.change(state, msg, d => {
-        d.todoList.push(id)
-        d.todoMap[id] = { id, content, completed: false }
-      })
+      return s => {
+        s.todoList.push(id)
+        s.todoMap[id] = { id, content, completed: false }
+      }
     }
 
-    case ActionType.DESTROY_TODO: {
+    case DESTROY_TODO: {
       const { id } = payload
-      return Automerge.change(state, msg, d => {
-        delete d.todoMap[id]
-        d.todoList = d.todoList.filter(_id => _id !== payload.id)
-      })
+      return s => {
+        delete s.todoMap[id]
+        s.todoList = s.todoList.filter(_id => _id !== payload.id)
+      }
     }
 
-    case ActionType.TOGGLE_TODO: {
+    case TOGGLE_TODO: {
       const { id } = payload
-      const currentTodo = state.todoMap[id]
-      return Automerge.change(state, msg, d => {
-        d.todoMap[id].completed = !currentTodo.completed
-      })
+      return s => (s.todoMap[id].completed = !s.todoMap[id].completed)
     }
 
-    case ActionType.EDIT_TODO: {
+    case EDIT_TODO: {
       const { id, content } = payload
-      return Automerge.change(state, msg, d => {
-        d.todoMap[id].content = content
-      })
+      return s => (s.todoMap[id].content = content)
     }
 
     default:
-      return state
+      return null
   }
 }
+
+export const reducer = automergeReducer(proxyReducer)
