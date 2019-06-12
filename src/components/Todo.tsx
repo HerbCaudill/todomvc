@@ -1,16 +1,15 @@
+import cn from 'classnames'
 import React, {
+  FormEventHandler,
+  KeyboardEventHandler,
+  useEffect,
   useRef,
   useState,
-  useEffect,
-  KeyboardEventHandler,
-  FormEventHandler,
 } from 'react'
-import cn from 'classnames'
 import { useDispatch } from 'react-redux'
-
-import { toggleTodo, destroyTodo, editTodo } from '../redux/actions'
-
+import { destroyTodo, editTodo, toggleTodo } from '../redux/actions'
 import { Todo as TodoType } from '../types'
+
 const ENTER_KEY = 13
 const ESCAPE_KEY = 27
 
