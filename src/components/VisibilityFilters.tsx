@@ -1,8 +1,8 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import cx from 'classnames'
-import { actions } from '../redux/actions'
+import { actions } from '../actions'
 import { VisibilityFilter, VisibilityFilterKey } from '../types'
-import { StoreContext } from 'src/redux/context'
+import { StoreContext } from 'src/context'
 
 export const VisibilityFilters = () => {
   const { state, dispatch } = useContext(StoreContext)

@@ -1,6 +1,6 @@
 import React, { useRef, FormEventHandler, useContext } from 'react'
-import { actions } from '../redux/actions'
-import { StoreContext } from 'src/redux/context'
+import { actions } from '../actions'
+import { StoreContext } from 'src/context'
 
 export const AddTodo = () => {
   // input.current will contain a reference to the new todo input field

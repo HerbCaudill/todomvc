@@ -7,8 +7,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { StoreContext } from 'src/redux/context'
-import { actions } from '../redux/actions'
+import { StoreContext } from 'src/context'
+import { actions } from '../actions'
 import { Todo as TodoType } from '../types'
 
 const { editTodo, destroyTodo, toggleTodo } = actions

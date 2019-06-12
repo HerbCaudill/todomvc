@@ -1,11 +1,11 @@
 import cx from 'classnames'
 import React, { useContext } from 'react'
 
-import { getFilteredTodos } from '../redux/selectors'
+import { getFilteredTodos } from '../selectors'
 import { AddTodo, TodoList, VisibilityFilters, ClearCompletedButton } from '.'
 import { pluralize } from '../lib/pluralize'
 import { VisibilityFilter } from '../types'
-import { StoreContext } from 'src/redux/context'
+import { StoreContext } from 'src/context'
 
 export default function App() {
   const { state } = useContext(StoreContext)

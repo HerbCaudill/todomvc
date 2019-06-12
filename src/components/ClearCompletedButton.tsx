@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 
-import { actions } from '../redux/actions'
-import { getFilteredTodos } from '../redux/selectors'
+import { actions } from '../actions'
+import { getFilteredTodos } from '../selectors'
 import { VisibilityFilter } from '../types'
-import { StoreContext } from 'src/redux/context'
+import { StoreContext } from 'src/context'
 
 export function ClearCompletedButton() {
   const { state, dispatch } = useContext(StoreContext)

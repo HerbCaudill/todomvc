@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { StoreContext } from 'src/redux/context'
+import { StoreContext } from 'src/context'
 import { Todo } from '.'
-import { getVisibleTodos } from '../redux/selectors'
+import { getVisibleTodos } from '../selectors'
 
 export const TodoList = () => {
   const { state } = useContext(StoreContext)
