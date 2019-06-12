@@ -8,6 +8,7 @@ export interface State {
   todoList: string[]
   todoMap: { [id: string]: Todo }
   visibilityFilter: VisibilityFilter
+  data: any
 }
 
 export enum VisibilityFilter {
