@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@types/classnames": "^2.2.8",
+    "automerge": "^0.10.1",
     "classnames": "2.2.6",
     "hypermerge": "0.3.2",
     "immutable": "3.8.2",
@@ -40,7 +41,6 @@
     "@types/uuid": "^3.4.4",
     "cypress": "^3.2.0",
     "hoist-non-react-statics": "^3.3.0",
-    "husky": "^2.3.0",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
     "start-server-and-test": "^1.9.0",
